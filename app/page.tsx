@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 type Project = {
   name: string;
@@ -54,8 +54,10 @@ const projects: Project[] = [
 const suggestions = [
   "¿Qué proyectos hizo?",
   "¿Qué tecnologías usa?",
-  "Contame sobre TechPaws",
+  "¿Qué experiencia tiene?",
 ];
+
+const changingWords = ["simples", "útiles", "reales"];
 
 function normalize(value: string) {
   return value
@@ -74,6 +76,7 @@ function answerAboutJulian(question: string) {
   if (/hola|buenas|quien sos|como estas/.test(q)) return "¡Hola! Soy el asistente del portfolio de Julián. Puedo contarte sobre su perfil, sus proyectos y las tecnologías que utilizó.";
   if (/quien es|sobre julian|perfil|presenta/.test(q)) return "Julián Batistutti es desarrollador full stack argentino. Construye productos web de punta a punta, combinando frontend, backend, integraciones, bases de datos y una mirada práctica de producto.";
   if (/proyecto|trabajo|portfolio|hiciste|hizo/.test(q)) return "Sus proyectos seleccionados son VuelosBaratos, Tu Matteoli Online, ¿Qué Cocino Hoy? y TechPaws. Van desde e-commerce y viajes hasta productos con IA y sistemas de gestión.";
+  if (/experiencia|trayectoria|cv|curriculum|trabajo/.test(q)) return "La experiencia que puedo confirmar está en sus productos: desarrolló frontends, APIs, autenticación, pagos, bases de datos y despliegues. Cuando se cargue su CV voy a sumar experiencia laboral y estudios, sin documento, dirección ni datos privados.";
   if (/tecnologia|stack|lenguaje|herramienta|programa/.test(q)) return "Trabaja con React, Next.js, JavaScript, TypeScript y Node.js. También integró Firebase, Neon Postgres, Gemini, Mercado Pago, Stripe, Travelpayouts y despliegues en Vercel.";
   if (/vuelo|travel|viaje/.test(q)) return "VuelosBaratos compara precios y escalas, ordena opciones por conveniencia y utiliza Travelpayouts para obtener referencias. Está construido con React y Node.js.";
   if (/matteoli|mate|tienda|ecommerce|e commerce/.test(q)) return "Tu Matteoli Online es una tienda de mates y accesorios. Incluye catálogo, carrito, Firebase y un flujo de pagos preparado con Stripe.";
@@ -93,6 +96,20 @@ function Arrow() {
 export default function Home() {
   const [question, setQuestion] = useState("");
   const [reply, setReply] = useState("Preguntame por los proyectos, el stack o la experiencia de Julián.");
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setWordIndex((current) => (current + 1) % changingWords.length), 2600);
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
+      { threshold: 0.12 },
+    );
+    document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => observer.observe(element));
+    return () => {
+      window.clearInterval(timer);
+      observer.disconnect();
+    };
+  }, []);
 
   function ask(value: string) {
     setQuestion(value);
@@ -105,29 +122,28 @@ export default function Home() {
   }
 
   return (
-    <main>
+    <main id="top">
       <aside className="profile-panel">
-        <div className="identity">
-          <span className="flag" aria-label="Argentina">🇦🇷</span>
-          <span>JULIÁN BATISTUTTI</span>
-          <span className="available">DISPONIBLE</span>
-        </div>
+        <nav className="side-nav">
+          <a className="identity" href="#top"><span className="flag" aria-label="Argentina">🇦🇷</span><span>JULIAN.dev</span></a>
+          <div><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a></div>
+        </nav>
 
         <section className="intro-copy">
-          <p className="eyebrow">FULL STACK DEVELOPER · ARGENTINA</p>
-          <h1>Julián<br />Batistutti.</h1>
-          <p className="role">Diseño interfaces, conecto backends y convierto ideas en productos web que funcionan.</p>
-          <p className="bio">Desarrollador full stack enfocado en experiencias completas: frontend, APIs, bases de datos, pagos y automatización.</p>
-          <div className="socials">
-            <a href="mailto:julian.batistutti@gmail.com">Email <Arrow /></a>
-            <a href="https://github.com/JulianBati92" target="_blank" rel="noreferrer">GitHub <Arrow /></a>
+          <div className="available"><i /> Disponible para nuevos proyectos</div>
+          <p className="eyebrow hero-line">FULL STACK DEVELOPER · ARGENTINA</p>
+          <h1 className="hero-line">Creo productos<br />digitales que se<br />sienten <em key={changingWords[wordIndex]}>{changingWords[wordIndex]}.</em></h1>
+          <p className="bio hero-line">Diseño y desarrollo experiencias web completas: desde una idea clara hasta un producto funcional, cuidado y listo para crecer.</p>
+          <div className="hero-actions hero-line">
+            <a className="primary-action" href="#proyectos">Ver mi trabajo <Arrow /></a>
+            <a className="secondary-action" href="mailto:julian.batistutti@gmail.com">Hablemos <span>→</span></a>
           </div>
         </section>
 
         <section className="assistant" aria-labelledby="assistant-title">
           <div className="assistant-head">
             <div><span className="assistant-dot" /><p id="assistant-title">Preguntale al portfolio</p></div>
-            <span>EN LÍNEA</span>
+            <span>JULIÁN</span>
           </div>
           <div className="answer" aria-live="polite">{reply}</div>
           <form onSubmit={handleSubmit}>
@@ -140,14 +156,14 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="profile-foot"><span>BUENOS AIRES · UTC −03:00</span><span>© 2026</span></div>
+        <div className="profile-foot"><span>BUENOS AIRES, ARGENTINA · UTC −03:00</span><span>HECHO CON MATE Y CÓDIGO</span></div>
       </aside>
 
-      <section className="work-panel">
+      <section className="work-panel" id="proyectos">
         <header className="work-head"><span>PROYECTOS SELECCIONADOS</span><span>04 PROYECTOS</span></header>
         <div className="projects">
           {projects.map((project, index) => (
-            <article className="project" key={project.name}>
+            <article className="project reveal" key={project.name} data-reveal>
               <div className="project-label"><span>0{index + 1}</span><span>{project.stack.slice(0, 2).join(" · ")}</span></div>
               <a className="project-name" href={project.live} target="_blank" rel="noreferrer">
                 <h2>{project.name}</h2><span><Arrow /></span>
@@ -170,7 +186,7 @@ export default function Home() {
           ))}
         </div>
 
-        <section className="approach">
+        <section className="approach reveal" id="sobre-mi" data-reveal>
           <p className="eyebrow">CÓMO TRABAJO</p>
           <h2>Del problema real<br />al producto publicado.</h2>
           <div className="approach-grid">
