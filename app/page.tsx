@@ -10,45 +10,87 @@ type Project = {
   repo: string;
   stack: string[];
   detail: string;
+  highlights: string[];
 };
 
 const projects: Project[] = [
   {
     name: "VuelosBaratos",
-    description: "Buscador de vuelos con comparación por precio y escalas, recomendación de conveniencia y conexión con Travelpayouts.",
+    description: "Una plataforma para comparar alternativas de viaje sin perderse entre precios, escalas y proveedores. Centraliza la búsqueda y ayuda a elegir la opción más conveniente con información clara.",
     image: "/projects/vuelosbaratos.png",
     live: "https://vuelosbaratos-two.vercel.app",
     repo: "https://github.com/JulianBati92/Vuelosbaratos",
     stack: ["React", "Node.js", "Travelpayouts", "Vercel"],
-    detail: "Aplicación full stack que ordena ofertas por conveniencia y mantiene la búsqueda útil incluso sin una API de IA configurada.",
+    detail: "Construí el frontend en React y un backend Node.js conectado con Travelpayouts. El sistema trabaja con precios de referencia, ordena resultados mediante un puntaje de conveniencia y deriva a búsquedas actualizadas antes de reservar.",
+    highlights: ["Comparación por precio y escalas", "Puntaje de conveniencia", "Integración con Travelpayouts"],
   },
   {
     name: "Tu Matteoli Online",
-    description: "Tienda online de mates y accesorios con catálogo, carrito y un flujo de compra conectado con Firebase y Stripe.",
+    description: "Una tienda online creada para convertir un catálogo artesanal en una experiencia de compra simple, visual y usable desde cualquier dispositivo.",
     image: "/projects/tumatteoli.png",
     live: "https://tumatteolionline.vercel.app",
     repo: "https://github.com/JulianBati92/tumatteolionline",
     stack: ["JavaScript", "Firebase", "Stripe", "E-commerce"],
-    detail: "E-commerce responsive con productos reales, gestión del carrito y persistencia de órdenes mediante servicios de Firebase.",
+    detail: "Desarrollé el catálogo, los filtros por categoría, el carrito y el proceso de compra. La solución guarda órdenes con Firebase y deja preparado el flujo de pagos con Stripe para acompañar la operación real del emprendimiento.",
+    highlights: ["Catálogo y filtros", "Carrito persistente", "Órdenes con Firebase"],
   },
   {
     name: "¿Qué Cocino Hoy?",
-    description: "Aplicación que propone recetas a partir de ingredientes, una foto y preferencias escritas con palabras propias.",
+    description: "Un producto pensado para resolver una pregunta cotidiana: qué cocinar con lo que ya hay en casa, respetando gustos, tiempos, dietas y formas de preparación.",
     image: "/projects/que-cocino-hoy.png",
     live: "https://quecocinohoy.vercel.app",
     repo: "https://github.com/JulianBati92/que-cocino-hoy",
     stack: ["Next.js", "TypeScript", "Gemini", "Firebase", "Mercado Pago"],
-    detail: "Incluye autenticación, cinco propuestas estructuradas, favoritos, usos gratuitos y continuidad Premium mediante suscripciones.",
+    detail: "Diseñé una experiencia mobile first que combina ingredientes, una foto opcional y preferencias libres. Gemini devuelve cinco propuestas estructuradas; Firebase gestiona el acceso y Mercado Pago permite continuar con una suscripción Premium.",
+    highlights: ["Recetas personalizadas", "Acceso con Firebase", "Suscripciones con Mercado Pago"],
   },
   {
     name: "TechPaws",
-    description: "Web y sistema de gestión para un servicio técnico de PCs y notebooks, con seguimiento privado para cada cliente.",
+    description: "Más que una landing: un sistema que presenta el servicio técnico, organiza las reparaciones y mantiene informado al cliente durante todo el proceso.",
     image: "/projects/techpaws.png",
     live: "https://tech-paws.vercel.app",
     repo: "https://github.com/JulianBati92/TechPaws",
     stack: ["Next.js", "TypeScript", "Neon Postgres", "Vercel"],
-    detail: "Combina una landing comercial con panel privado, órdenes de servicio, historial de estados y mensajes preparados para WhatsApp.",
+    detail: "Construí una identidad comercial completa y un panel privado para administrar órdenes, estados e historial. Cada cliente puede consultar su equipo con datos propios y el sistema prepara avisos claros para enviar por WhatsApp.",
+    highlights: ["Panel privado de órdenes", "Seguimiento para clientes", "Datos en Neon Postgres"],
   },
+];
+
+const experience = [
+  {
+    period: "SEP 2024 — ACTUALIDAD",
+    company: "Megatrans",
+    role: "IT Support Analyst",
+    summary: "Soporte técnico integral para usuarios, gerencia y equipos VIP. Resolución de incidentes de hardware, software y redes; administración de accesos; soporte remoto y presencial; onboarding, offboarding y mantenimiento de activos.",
+    tags: ["Microsoft 365", "Active Directory", "Redes", "Soporte VIP"],
+  },
+  {
+    period: "OCT 2023 — OCT 2024",
+    company: "Tech Mahindra · Google",
+    role: "Application Support & QA Analyst",
+    summary: "Testing y control de calidad para complementos de Google Workspace Marketplace. Detección y seguimiento de bugs, automatización con Apps Script, análisis de datos y soporte técnico a desarrolladores.",
+    tags: ["QA", "Google Workspace", "Apps Script", "Looker Studio"],
+  },
+  {
+    period: "ABR 2023 — OCT 2023",
+    company: "Pixel IT · Cervecería Quilmes",
+    role: "Field Support Analyst",
+    summary: "Soporte de campo y remoto, seguimiento de tickets y SLA, preparación de equipos, instalación de software corporativo, inventario, onboarding y asistencia a salas Cisco y Zoom.",
+    tags: ["ServiceNow", "SLA", "Hardware", "Soporte onsite"],
+  },
+  {
+    period: "ENE 2023 — MAR 2023",
+    company: "Cognizant · Google Ads",
+    role: "Support Agent",
+    summary: "Soporte LATAM para Google Ads, Analytics, Tag Manager y Merchant Center. Configuración de campañas, conversiones, audiencias, pagos y resolución de incidencias de políticas.",
+    tags: ["Google Ads", "Analytics", "Tag Manager", "Soporte LATAM"],
+  },
+];
+
+const education = [
+  { title: "Full Stack Developer", place: "Coderhouse", period: "AGO 2022 — ABR 2023", text: "Formación en desarrollo web, JavaScript, React y backend, aplicada luego a productos completos y desplegados." },
+  { title: "Instalador y soporte de sistemas informáticos", place: "CFP 404", period: "ABR 2020 — ABR 2021", text: "Capacitación técnica en instalación, diagnóstico, mantenimiento y soporte de sistemas informáticos." },
+  { title: "Inglés intermedio", place: "Experiencia profesional", period: "USO ACTUAL", text: "Comunicación y soporte en contextos regionales, documentación técnica y plataformas internacionales." },
 ];
 
 const suggestions = [
@@ -83,10 +125,10 @@ function answerAboutJulian(question: string) {
   if (/qa|testing|calidad|bug/.test(q)) return "En Tech Mahindra realizó soporte y QA para complementos de Google Workspace Marketplace: detección y seguimiento de bugs, testing, optimización de procesos y soporte técnico a desarrolladores.";
   if (/proyecto|portfolio|hiciste|hizo|construyo|desarrollo/.test(q)) return "Sus proyectos seleccionados son VuelosBaratos, Tu Matteoli Online, ¿Qué Cocino Hoy? y TechPaws. Van desde e-commerce y viajes hasta productos con IA y sistemas de gestión.";
   if (/tecnologia|stack|lenguaje|herramienta|programa/.test(q)) return "Trabaja con React, Next.js, JavaScript, TypeScript y Node.js. También integró Firebase, Neon Postgres, Gemini, Mercado Pago, Stripe, Travelpayouts y despliegues en Vercel.";
-  if (/vuelo|travel|viaje/.test(q)) return "VuelosBaratos compara precios y escalas, ordena opciones por conveniencia y utiliza Travelpayouts para obtener referencias. Está construido con React y Node.js.";
-  if (/matteoli|mate|tienda|ecommerce|e commerce/.test(q)) return "Tu Matteoli Online es una tienda de mates y accesorios. Incluye catálogo, carrito, Firebase y un flujo de pagos preparado con Stripe.";
-  if (/cocino|receta|comida|gemini/.test(q)) return "¿Qué Cocino Hoy? usa Gemini para generar cinco recetas a partir de ingredientes, una foto y preferencias personales. Suma Firebase Authentication y suscripciones con Mercado Pago.";
-  if (/techpaws|tech paws|reparacion|servicio tecnico|pc|notebook/.test(q)) return "TechPaws es el proyecto de servicio técnico de Julián. La web incluye captación de clientes, panel privado, órdenes de reparación, seguimiento de equipos y una base Neon Postgres.";
+  if (/vuelo|travel|viaje/.test(q)) return "VuelosBaratos centraliza una búsqueda que normalmente obliga a comparar varias páginas. Consulta referencias con Travelpayouts, evalúa precio y escalas, ordena por conveniencia y deriva a una búsqueda actualizada antes de reservar. Está construido con React y Node.js.";
+  if (/matteoli|mate|tienda|ecommerce|e commerce/.test(q)) return "Tu Matteoli Online transformó un catálogo artesanal en una tienda responsive. Incluye filtros, productos reales, carrito, registro de órdenes con Firebase y un flujo de compra preparado para Stripe.";
+  if (/cocino|receta|comida|gemini/.test(q)) return "¿Qué Cocino Hoy? propone cinco recetas según ingredientes, foto, dieta, tiempo y preferencias personales. Integra Gemini, autenticación con Firebase, favoritos y continuidad Premium mediante Mercado Pago.";
+  if (/techpaws|tech paws|reparacion|servicio tecnico|pc|notebook/.test(q)) return "TechPaws combina la presencia comercial del servicio técnico con su operación diaria: panel privado, órdenes, historial de estados, seguimiento para clientes, avisos para WhatsApp y persistencia en Neon Postgres.";
   if (/contacto|email|correo|contratar|hablar/.test(q)) return "Podés contactar a Julián en julian.batistutti@gmail.com o visitar su GitHub: github.com/JulianBati92.";
   if (/argentina|donde|ubicacion/.test(q)) return "Julián trabaja desde Argentina y desarrolla productos web para escritorio y dispositivos móviles.";
   if (/ia|inteligencia artificial|gemini/.test(q)) return "En ¿Qué Cocino Hoy? integró Gemini para interpretar ingredientes y preferencias y devolver recetas ordenadas y fáciles de seguir.";
@@ -181,6 +223,7 @@ export default function Home() {
               </a>
               <div className="project-info">
                 <p>{project.detail}</p>
+                <ul className="project-highlights">{project.highlights.map((item) => <li key={item}>{item}</li>)}</ul>
                 <div className="stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
                 <div className="project-links">
                   <a href={project.live} target="_blank" rel="noreferrer">Sitio en vivo <Arrow /></a>
@@ -190,6 +233,44 @@ export default function Home() {
             </article>
           ))}
         </div>
+
+        <section className="career reveal" data-reveal>
+          <div className="section-intro">
+            <p className="eyebrow">EXPERIENCIA PROFESIONAL</p>
+            <h2>Experiencia técnica<br />en contextos reales.</h2>
+            <p>Desarrollo, soporte y calidad con una misma forma de trabajar: entender el problema, documentar bien y resolver sin vueltas.</p>
+          </div>
+          <div className="timeline">
+            {experience.map((item) => (
+              <article className="timeline-item" key={item.company}>
+                <p className="timeline-period">{item.period}</p>
+                <div>
+                  <h3>{item.company}</h3>
+                  <p className="timeline-role">{item.role}</p>
+                  <p className="timeline-summary">{item.summary}</p>
+                  <div className="stack">{item.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="education reveal" data-reveal>
+          <div className="section-intro compact">
+            <p className="eyebrow">FORMACIÓN Y CAPACIDADES</p>
+            <h2>Base técnica y aprendizaje constante.</h2>
+          </div>
+          <div className="education-grid">
+            {education.map((item) => (
+              <article key={item.title}>
+                <p>{item.period}</p>
+                <h3>{item.title}</h3>
+                <strong>{item.place}</strong>
+                <span>{item.text}</span>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <section className="approach reveal" id="sobre-mi" data-reveal>
           <p className="eyebrow">CÓMO TRABAJO</p>
